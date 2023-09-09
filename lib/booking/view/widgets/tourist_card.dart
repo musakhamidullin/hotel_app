@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/card_base.dart';
 import '../../../theme.dart';
 
 class TouristCard extends StatelessWidget {
@@ -17,17 +18,17 @@ class TouristCard extends StatelessWidget {
               'Первый турист',
               style: theme.textTheme.titleLarge,
             ),
-            trailing: DecoratedBox(
-                decoration: BoxDecoration(
-                    color: blueWithOpacity,
-                    borderRadius: BorderRadius.circular(12)),
-                child: const Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Icon(
-                    Icons.expand_more,
-                    size: 32,
-                    color: blue,
-                  ),
-                ))));
+            trailing: CardWidget(
+              customBorderRadius: BorderRadius.circular(12),
+              customColor: blueWithOpacity,
+              widget: const Padding(
+                padding: EdgeInsets.all(4.0),
+                child: Icon(
+                  Icons.expand_more,
+                  size: 32,
+                  color: blue,
+                ),
+              ),
+            )));
   }
 }
