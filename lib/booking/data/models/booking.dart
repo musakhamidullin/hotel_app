@@ -5,7 +5,6 @@ part 'booking.g.dart';
 
 @freezed
 class Booking with _$Booking {
-
   const Booking._();
 
   const factory Booking({
@@ -26,7 +25,17 @@ class Booking with _$Booking {
     @JsonKey(name: "service_charge") @Default(0) int serviceCharge,
   }) = _Booking;
 
-  int totalPrice() => tourPrice + fuelCharge + serviceCharge;
+  String get getTour => '${tourPrice ~/ 1000} ${(tourPrice % 1000).toInt()} ₽';
+
+  String get getFuel => '${fuelCharge ~/ 1000} ${(fuelCharge % 1000).toInt()} ₽';
+
+  String get getServiceCharge => '${serviceCharge ~/ 1000} ${(serviceCharge % 1000).toInt()} ₽';
+
+  String totalPrice() {
+    final value = tourPrice + fuelCharge + serviceCharge;
+
+    return '${value ~/ 1000} ${value % 1000} ₽';
+  }
 
   factory Booking.fromJson(Map<String, dynamic> json) =>
       _$BookingFromJson(json);

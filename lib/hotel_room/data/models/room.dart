@@ -5,6 +5,9 @@ part 'room.g.dart';
 
 @freezed
 class Room with _$Room {
+
+  const Room._();
+
   const factory Room({
     @JsonKey(name: "id") @Default(0) int id,
     @JsonKey(name: "name") @Default('') String name,
@@ -15,4 +18,6 @@ class Room with _$Room {
   }) = _Room;
 
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
+
+  String getPrice () => 'от ${price ~/ 1000} ${(price % 1000)} ₽';
 }

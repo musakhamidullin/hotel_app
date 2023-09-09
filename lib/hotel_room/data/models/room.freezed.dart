@@ -163,7 +163,7 @@ class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res, _$_Room>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Room implements _Room {
+class _$_Room extends _Room {
   const _$_Room(
       {@JsonKey(name: "id") this.id = 0,
       @JsonKey(name: "name") this.name = '',
@@ -173,7 +173,8 @@ class _$_Room implements _Room {
       final List<String> peculiarities = const [],
       @JsonKey(name: "image_urls") final List<String> imageUrls = const []})
       : _peculiarities = peculiarities,
-        _imageUrls = imageUrls;
+        _imageUrls = imageUrls,
+        super._();
 
   factory _$_Room.fromJson(Map<String, dynamic> json) => _$$_RoomFromJson(json);
 
@@ -253,7 +254,7 @@ class _$_Room implements _Room {
   }
 }
 
-abstract class _Room implements Room {
+abstract class _Room extends Room {
   const factory _Room(
       {@JsonKey(name: "id") final int id,
       @JsonKey(name: "name") final String name,
@@ -261,6 +262,7 @@ abstract class _Room implements Room {
       @JsonKey(name: "price_per") final String pricePer,
       @JsonKey(name: "peculiarities") final List<String> peculiarities,
       @JsonKey(name: "image_urls") final List<String> imageUrls}) = _$_Room;
+  const _Room._() : super._();
 
   factory _Room.fromJson(Map<String, dynamic> json) = _$_Room.fromJson;
 

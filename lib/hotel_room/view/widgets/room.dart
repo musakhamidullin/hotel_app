@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/widgets/button.dart';
+import '../../../core/widgets/card_base.dart';
 import '../../../core/widgets/carousel.dart';
 import '../../../core/widgets/image.dart';
 import '../../../core/widgets/peculiaritires.dart';
@@ -20,10 +21,8 @@ class RoomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return DecoratedBox(
-      decoration:
-          const BoxDecoration(color: Colors.white, borderRadius: borderRadius),
-      child: Column(
+    return CardWidget(
+      widget: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           padding,
@@ -43,11 +42,10 @@ class RoomWidget extends StatelessWidget {
                 paddingDivided,
                 Row(
                   children: [
-                    DecoratedBox(
-                      decoration: const BoxDecoration(
-                          color: blueWithOpacity,
-                          borderRadius: BorderRadius.all(Radius.circular(4))),
-                      child: Padding(
+                    CardWidget(
+                      customBorderRadius:
+                          const BorderRadius.all(Radius.circular(4)),
+                      widget: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 4),
                         child: Row(children: [
@@ -70,7 +68,8 @@ class RoomWidget extends StatelessWidget {
                 RichText(
                     text: TextSpan(children: [
                   TextSpan(
-                      text: 'от ${room.price ~/ 1000} ${(room.price % 1000).toInt()} ₽',
+                      text:
+                          room.getPrice(),
                       style: theme.textTheme.headlineSmall),
                   TextSpan(
                       text: '  ${room.pricePer}',

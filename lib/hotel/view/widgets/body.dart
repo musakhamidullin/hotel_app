@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../core/widgets/card_base.dart';
 import '../../../core/widgets/peculiaritires.dart';
 import '../../../theme.dart';
 import '../../data/models/about_hotel.dart';
@@ -13,10 +14,8 @@ class BodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return DecoratedBox(
-      decoration:
-          const BoxDecoration(color: Colors.white, borderRadius: borderRadius),
-      child: SizedBox(
+    return CardWidget(
+      widget: SizedBox(
         width: double.infinity,
         child: Padding(
           padding: paddingWidget,
@@ -36,10 +35,10 @@ class BodyWidget extends StatelessWidget {
                 style: theme.textTheme.titleMedium,
               ),
               padding,
-              DecoratedBox(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12), color: background),
-                child: Column(
+              CardWidget(
+                customBorderRadius: BorderRadius.circular(12),
+                customColor: background,
+                widget: Column(
                   children: [
                     ListTile(
                       leading: SvgPicture.asset(
@@ -50,10 +49,7 @@ class BodyWidget extends StatelessWidget {
                       subtitle: const Text('Самое необходимое'),
                       trailing: const Icon(Icons.chevron_right_rounded),
                     ),
-                    const Divider(
-                      height: 0,
-                      indent: 70,
-                    ),
+                    dividerListTile,
                     ListTile(
                       leading: SvgPicture.asset(
                         'assets/icons/tick-square.svg',
@@ -63,10 +59,7 @@ class BodyWidget extends StatelessWidget {
                       subtitle: const Text('Самое необходимое'),
                       trailing: const Icon(Icons.chevron_right_rounded),
                     ),
-                    const Divider(
-                      height: 0,
-                      indent: 70,
-                    ),
+                    dividerListTile,
                     ListTile(
                       leading: SvgPicture.asset(
                         'assets/icons/close-square.svg',

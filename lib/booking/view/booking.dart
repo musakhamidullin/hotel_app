@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/widgets/base.dart';
+import '../../core/widgets/card_base.dart';
 import '../../hotel/view/widgets/bottom.dart';
 import '../../success/view/success.dart';
 import '../../theme.dart';
@@ -53,33 +54,31 @@ class BookingPage extends StatelessWidget {
                       PriceInfoWidget(booking: state.booking),
                       paddingDivided,
 
-                      DecoratedBox(
-                        decoration: const BoxDecoration(
-                            borderRadius: borderRadius, color: Colors.white),
-                        child: ListTile(
+                      CardWidget(
+                        widget: ListTile(
                             title: Text(
                               'Добавить туриста',
                               style: theme.textTheme.titleLarge,
                             ),
-                            trailing: DecoratedBox(
-                                decoration: BoxDecoration(
-                                    color: blue,
-                                    borderRadius: BorderRadius.circular(12)),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(4.0),
-                                  child: Icon(
-                                    Icons.add,
-                                    size: 32,
-                                    color: Colors.white,
-                                  ),
-                                ))),
+                            trailing: CardWidget(
+                              customBorderRadius: BorderRadius.circular(12),
+                              customColor: blue,
+                              widget: const Padding(
+                                padding: EdgeInsets.all(4.0),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 32,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )),
                       ),
 
                       paddingDivided,
 
                       BottomWidget(
                           content:
-                              'Оплатить ${state.booking.totalPrice() ~/ 1000}  ${(state.booking.totalPrice() % 1000).toInt()} ₽',
+                              'Оплатить ${state.booking.totalPrice()}',
                           callBack: () {
                             Navigator.push(
                                 context,

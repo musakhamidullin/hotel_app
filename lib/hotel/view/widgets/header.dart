@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/card_base.dart';
 import '../../../core/widgets/image.dart';
 import '../../../hotel_room/view/widgets/rate.dart';
 import '../../../theme.dart';
@@ -19,12 +20,10 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return DecoratedBox(
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius:
-              BorderRadius.only(bottomLeft: radius, bottomRight: radius)),
-      child: Column(
+    return CardWidget(
+      customBorderRadius:
+          const BorderRadius.only(bottomLeft: radius, bottomRight: radius),
+      widget: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CarouselWithIndicator(
@@ -55,7 +54,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 RichText(
                     text: TextSpan(children: [
                   TextSpan(
-                      text: 'от ${widget.hotel.minimalPrice ~/ 1000} ${widget.hotel.minimalPrice % 1000} ₽',
+                      text:
+                          'от ${widget.hotel.minimalPrice ~/ 1000} ${(widget.hotel.minimalPrice % 1000).toInt()} ₽',
                       style: theme.textTheme.headlineSmall),
                   TextSpan(
                       text: '    ${widget.hotel.priceForIt}',

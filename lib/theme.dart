@@ -26,6 +26,12 @@ const borderRadius = BorderRadius.all(Radius.circular(16));
 
 const background = Color.fromRGBO(251, 251, 252, 1);
 
+const dividerListTile = Divider(
+  height: 0,
+  indent: 70,
+  color: grey,
+);
+
 final themeData = ThemeData(
     dividerColor: Colors.transparent,
     primaryTextTheme: const TextTheme(
@@ -61,7 +67,7 @@ const _textTheme = TextTheme(
     headlineSmall: TextStyle(fontSize: 30, fontWeight: FontWeight.w600));
 
 const _expansionTileTheme = ExpansionTileThemeData(
-  backgroundColor: Colors.white,
+    backgroundColor: Colors.white,
     childrenPadding: EdgeInsets.symmetric(horizontal: 8));
 
 final _elevatedButtonTheme = ElevatedButtonThemeData(

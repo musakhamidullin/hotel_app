@@ -24,7 +24,7 @@ class PriceInfoWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: Text(
-                  '${booking.tourPrice ~/ 1000}  ${(booking.tourPrice % 1000).toInt()} ₽',
+                  booking.getTour,
                   textAlign: TextAlign.end,
                   style: theme.textTheme.titleMedium,
                 ),
@@ -36,7 +36,7 @@ class PriceInfoWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child:  Text(
-                  '${booking.fuelCharge ~/ 1000}  ${(booking.fuelCharge % 1000).toInt()} ₽',
+                  booking.getFuel,
                   textAlign: TextAlign.end,
                   style: theme.textTheme.titleMedium,
                 ),
@@ -48,7 +48,7 @@ class PriceInfoWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: Text(
-                  '${booking.serviceCharge ~/ 1000}  ${(booking.serviceCharge % 1000).toInt()} ₽',
+                  booking.getServiceCharge,
                   textAlign: TextAlign.end,
                   style: theme.textTheme.titleMedium,
                 ),
@@ -58,7 +58,7 @@ class PriceInfoWidget extends StatelessWidget {
               Text('К оплате',
                   style: theme.textTheme.titleMedium?.copyWith(color: grey)),
               Text(
-                '${booking.totalPrice() ~/ 1000}  ${(booking.totalPrice() % 1000).toInt()} ₽',
+                booking.totalPrice(),
                 textAlign: TextAlign.end,
                 style: theme.textTheme.titleMedium?.copyWith(
                   color: blue,
