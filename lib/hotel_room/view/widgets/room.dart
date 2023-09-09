@@ -70,7 +70,7 @@ class RoomWidget extends StatelessWidget {
                 RichText(
                     text: TextSpan(children: [
                   TextSpan(
-                      text: 'от ${room.price} ₽',
+                      text: 'от ${room.price ~/ 1000} ${(room.price % 1000).toInt()} ₽',
                       style: theme.textTheme.headlineSmall),
                   TextSpan(
                       text: '  ${room.pricePer}',

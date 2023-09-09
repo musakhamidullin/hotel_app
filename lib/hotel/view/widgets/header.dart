@@ -55,7 +55,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 RichText(
                     text: TextSpan(children: [
                   TextSpan(
-                      text: 'от ${widget.hotel.minimalPrice} ₽',
+                      text: 'от ${widget.hotel.minimalPrice ~/ 1000} ${widget.hotel.minimalPrice % 1000} ₽',
                       style: theme.textTheme.headlineSmall),
                   TextSpan(
                       text: '    ${widget.hotel.priceForIt}',
