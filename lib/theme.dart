@@ -12,25 +12,42 @@ const padding2x = SizedBox(height: 32);
 
 const paddingWidget = EdgeInsets.symmetric(horizontal: 16);
 
+const paddingWidgetVH = EdgeInsets.symmetric(horizontal: 16, vertical: 16);
+
 const paddingWidgetDivided = EdgeInsets.symmetric(horizontal: 8);
 
 const Color rateColor = Color.fromRGBO(255, 168, 0, 1);
 
+const Color blue = Color.fromRGBO(13, 114, 255, 1);
+
+const Color blueWithOpacity = Color.fromRGBO(13, 114, 255, 0.1);
+
+const borderRadius = BorderRadius.all(Radius.circular(16));
+
+const background = Color.fromRGBO(251, 251, 252, 1);
+
 final themeData = ThemeData(
-  fontFamily: 'SF Pro Display',
-  textTheme: _textTheme,
-  primaryColor: primary,
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: primary),
-  expansionTileTheme: _expansionTileTheme,
-  canvasColor: Colors.white,
-  highlightColor: Colors.transparent,
-  visualDensity: VisualDensity.adaptivePlatformDensity,
-  cardTheme: _cardTheme,
-  dialogTheme: _dialogTheme,
-  elevatedButtonTheme: _elevatedButtonTheme,
-  inputDecorationTheme: _inputDecorationTheme,
-  appBarTheme: _appBarTheme,
-);
+    dividerColor: Colors.transparent,
+    primaryTextTheme: const TextTheme(
+      titleLarge: TextStyle(fontSize: 22),
+      bodyMedium: TextStyle(fontSize: 16),
+    ),
+    fontFamily: 'SF Pro Display',
+    textTheme: _textTheme,
+    primaryColor: primary,
+    colorScheme: ColorScheme.fromSwatch(primarySwatch: primary),
+    expansionTileTheme: _expansionTileTheme,
+    canvasColor: Colors.white,
+    highlightColor: Colors.transparent,
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    cardTheme: _cardTheme,
+    dialogTheme: _dialogTheme,
+    elevatedButtonTheme: _elevatedButtonTheme,
+    inputDecorationTheme: _inputDecorationTheme,
+    appBarTheme: _appBarTheme,
+    listTileTheme: _listTileTheme);
+
+const _listTileTheme = ListTileThemeData(iconColor: Colors.black);
 
 final _dialogTheme = DialogTheme(
   shape: RoundedRectangleBorder(
@@ -38,15 +55,19 @@ final _dialogTheme = DialogTheme(
   ),
 );
 
-const _textTheme = TextTheme(labelLarge: TextStyle(fontSize: 16));
+const _textTheme = TextTheme(
+    titleLarge: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
+    labelLarge: TextStyle(fontSize: 16),
+    headlineSmall: TextStyle(fontSize: 30, fontWeight: FontWeight.w600));
 
 const _expansionTileTheme = ExpansionTileThemeData(
+  backgroundColor: Colors.white,
     childrenPadding: EdgeInsets.symmetric(horizontal: 8));
 
 final _elevatedButtonTheme = ElevatedButtonThemeData(
   style: ButtonStyle(
-    textStyle:
-        const MaterialStatePropertyAll(TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+    textStyle: const MaterialStatePropertyAll(
+        TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
     padding: MaterialStateProperty.all<EdgeInsets>(
       const EdgeInsets.all(14),
     ),
@@ -71,35 +92,33 @@ const _appBarTheme = AppBarTheme(
     shadowColor: Colors.transparent);
 
 final _inputDecorationTheme = InputDecorationTheme(
+  floatingLabelBehavior: FloatingLabelBehavior.always,
   filled: true,
-  fillColor: Colors.white,
+  fillColor: background,
+
   border: const OutlineInputBorder(
-    borderSide: BorderSide(
-      color: Colors.white,
-      width: 1.0,
-    ),
     borderRadius: BorderRadius.all(
       Radius.circular(
         12,
       ),
     ),
   ),
-  enabledBorder: OutlineInputBorder(
-    borderRadius: const BorderRadius.all(
-      Radius.circular(
-        12,
-      ),
-    ),
-    borderSide: BorderSide(color: Colors.grey.shade200),
-  ),
-  focusedBorder: const OutlineInputBorder(
-    borderSide: BorderSide(color: Color(_primaryAccentValue)),
-    borderRadius: BorderRadius.all(
-      Radius.circular(
-        12,
-      ),
-    ),
-  ),
+  // enabledBorder: OutlineInputBorder(
+  //   borderRadius: const BorderRadius.all(
+  //     Radius.circular(
+  //       12,
+  //     ),
+  //   ),
+  //   borderSide: BorderSide(color: Colors.grey.shade200),
+  // ),
+  // focusedBorder: const OutlineInputBorder(
+  //   borderSide: BorderSide(color: Color(_primaryAccentValue)),
+  //   borderRadius: BorderRadius.all(
+  //     Radius.circular(
+  //       12,
+  //     ),
+  //   ),
+  // ),
 );
 
 const MaterialColor primary = MaterialColor(_primaryPrimaryValue, <int, Color>{

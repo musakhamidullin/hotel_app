@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/button.dart';
 import '../../../theme.dart';
 
 class BottomWidget extends StatelessWidget {
@@ -17,15 +18,12 @@ class BottomWidget extends StatelessWidget {
         children: [
           const Divider(
             height: 0,
+            color: Colors.black12,
           ),
           padding,
           Padding(
-            padding: paddingWidgetDivided,
-            child: SizedBox(
-                height: 56,
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () => callBack, child: Text(content))),
+            padding: paddingWidget,
+            child: ButtonWidget(content: content, callback: callBack),
           ),
           padding,
         ],

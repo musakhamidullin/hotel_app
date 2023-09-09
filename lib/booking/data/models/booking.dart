@@ -5,6 +5,9 @@ part 'booking.g.dart';
 
 @freezed
 class Booking with _$Booking {
+
+  const Booking._();
+
   const factory Booking({
     @JsonKey(name: "id") @Default(0) int id,
     @JsonKey(name: "hotel_name") @Default('') String hotelName,
@@ -22,6 +25,8 @@ class Booking with _$Booking {
     @JsonKey(name: "fuel_charge") @Default(0) int fuelCharge,
     @JsonKey(name: "service_charge") @Default(0) int serviceCharge,
   }) = _Booking;
+
+  int totalPrice() => tourPrice + fuelCharge + serviceCharge;
 
   factory Booking.fromJson(Map<String, dynamic> json) =>
       _$BookingFromJson(json);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/widgets/base.dart';
+import '../../hotel_room/view/hotel_rooms.dart';
 import '../../theme.dart';
 import '../cubit/hotel_cubit.dart';
 import '../data/models/hotel_api.dart';
@@ -18,7 +19,7 @@ class HotelsPage extends StatelessWidget {
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.black.withOpacity(0.05),
+          backgroundColor: background,
           appBar: AppBar(
             title: const Text('Отель'),
           ),
@@ -28,14 +29,22 @@ class HotelsPage extends StatelessWidget {
               builder: (context, state) {
                 return BaseWidget(
                   widget: ListView(
+                    physics: const ClampingScrollPhysics(),
                     children: [
                       HeaderWidget(hotel: state.hotel),
                       paddingDivided,
                       BodyWidget(aboutHotel: state.hotel.aboutTheHotel),
                       paddingDivided,
-      
                       BottomWidget(
-                        callBack: (){},
+                        callBack: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HotelRoomsPage(
+                                  name: state.hotel.name,
+                                ),
+                              ));
+                        },
                         content: 'К выбору места',
                       )
                     ],

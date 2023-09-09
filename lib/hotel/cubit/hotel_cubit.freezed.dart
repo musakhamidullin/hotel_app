@@ -31,6 +31,8 @@ abstract class $HotelStateCopyWith<$Res> {
       _$HotelStateCopyWithImpl<$Res, HotelState>;
   @useResult
   $Res call({Status status, Hotel hotel});
+
+  $HotelCopyWith<$Res> get hotel;
 }
 
 /// @nodoc
@@ -47,18 +49,26 @@ class _$HotelStateCopyWithImpl<$Res, $Val extends HotelState>
   @override
   $Res call({
     Object? status = null,
-    Object? hotel = freezed,
+    Object? hotel = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      hotel: freezed == hotel
+      hotel: null == hotel
           ? _value.hotel
           : hotel // ignore: cast_nullable_to_non_nullable
               as Hotel,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $HotelCopyWith<$Res> get hotel {
+    return $HotelCopyWith<$Res>(_value.hotel, (value) {
+      return _then(_value.copyWith(hotel: value) as $Val);
+    });
   }
 }
 
@@ -71,6 +81,9 @@ abstract class _$$_HotelStateCopyWith<$Res>
   @override
   @useResult
   $Res call({Status status, Hotel hotel});
+
+  @override
+  $HotelCopyWith<$Res> get hotel;
 }
 
 /// @nodoc
@@ -85,14 +98,14 @@ class __$$_HotelStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? hotel = freezed,
+    Object? hotel = null,
   }) {
     return _then(_$_HotelState(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      hotel: freezed == hotel
+      hotel: null == hotel
           ? _value.hotel
           : hotel // ignore: cast_nullable_to_non_nullable
               as Hotel,
@@ -124,12 +137,11 @@ class _$_HotelState implements _HotelState {
         (other.runtimeType == runtimeType &&
             other is _$_HotelState &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality().equals(other.hotel, hotel));
+            (identical(other.hotel, hotel) || other.hotel == hotel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, const DeepCollectionEquality().hash(hotel));
+  int get hashCode => Object.hash(runtimeType, status, hotel);
 
   @JsonKey(ignore: true)
   @override

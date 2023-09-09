@@ -291,7 +291,7 @@ class __$$_BookingCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Booking implements _Booking {
+class _$_Booking extends _Booking {
   const _$_Booking(
       {@JsonKey(name: "id") this.id = 0,
       @JsonKey(name: "hotel_name") this.hotelName = '',
@@ -307,7 +307,8 @@ class _$_Booking implements _Booking {
       @JsonKey(name: "nutrition") this.nutrition = '',
       @JsonKey(name: "tour_price") this.tourPrice = 0,
       @JsonKey(name: "fuel_charge") this.fuelCharge = 0,
-      @JsonKey(name: "service_charge") this.serviceCharge = 0});
+      @JsonKey(name: "service_charge") this.serviceCharge = 0})
+      : super._();
 
   factory _$_Booking.fromJson(Map<String, dynamic> json) =>
       _$$_BookingFromJson(json);
@@ -432,7 +433,7 @@ class _$_Booking implements _Booking {
   }
 }
 
-abstract class _Booking implements Booking {
+abstract class _Booking extends Booking {
   const factory _Booking(
       {@JsonKey(name: "id") final int id,
       @JsonKey(name: "hotel_name") final String hotelName,
@@ -449,6 +450,7 @@ abstract class _Booking implements Booking {
       @JsonKey(name: "tour_price") final int tourPrice,
       @JsonKey(name: "fuel_charge") final int fuelCharge,
       @JsonKey(name: "service_charge") final int serviceCharge}) = _$_Booking;
+  const _Booking._() : super._();
 
   factory _Booking.fromJson(Map<String, dynamic> json) = _$_Booking.fromJson;
 
