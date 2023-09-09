@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/card_base.dart';
 import '../../../theme.dart';
 import '../../data/models/booking.dart';
-
 
 class RateWidget extends StatelessWidget {
   const RateWidget({
@@ -18,11 +17,10 @@ class RateWidget extends StatelessWidget {
     final theme = Theme.of(context);
     return Row(
       children: [
-        DecoratedBox(
-          decoration: BoxDecoration(
-              color: rateColor.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(10)),
-          child: Padding(
+        CardWidget(
+          customColor: rateColor.withOpacity(0.2),
+          customBorderRadius: BorderRadius.circular(10),
+          widget: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
