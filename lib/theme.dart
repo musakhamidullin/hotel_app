@@ -102,7 +102,9 @@ final _inputDecorationTheme = InputDecorationTheme(
   filled: true,
   fillColor: background,
 
+
   border: const OutlineInputBorder(
+    borderSide: BorderSide.none,
     borderRadius: BorderRadius.all(
       Radius.circular(
         12,

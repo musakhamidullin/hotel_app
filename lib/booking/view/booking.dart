@@ -14,8 +14,15 @@ import 'widgets/information.dart';
 import 'widgets/price_infol.dart';
 import 'widgets/tourist_card.dart';
 
-class BookingPage extends StatelessWidget {
+class BookingPage extends StatefulWidget {
   const BookingPage({super.key});
+
+  @override
+  State<BookingPage> createState() => _BookingPageState();
+}
+
+class _BookingPageState extends State<BookingPage> {
+  final ScrollController _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +38,13 @@ class BookingPage extends StatelessWidget {
           body: BlocProvider(
             create: (_) => BookingCubit(BookingApi()),
             child: BlocBuilder<BookingCubit, BookingState>(
+              buildWhen: (previous, current) =>
+                  previous.status != current.status,
               builder: (context, state) {
                 return BaseWidget(
                   status: state.status,
                   widget: ListView(
+                    controller: _controller,
                     physics: const ClampingScrollPhysics(),
                     children: [
                       paddingDivided,
@@ -46,9 +56,23 @@ class BookingPage extends StatelessWidget {
                       const InformationWidget(),
                       paddingDivided,
 
-                      const TouristCard(),
-                      paddingDivided,
-                      const TouristCard(),
+                      BlocBuilder<BookingCubit, BookingState>(
+                        buildWhen: (previous, current) =>
+                            previous.tourists.length != current.tourists.length,
+                        builder: (context, state) {
+                          return ListView.separated(
+                            controller: _controller,
+                            shrinkWrap: true,
+                            separatorBuilder: (context, index) =>
+                                paddingDivided,
+                            itemCount: state.tourists.length,
+                            itemBuilder: (context, i) => TouristCard(
+                              content: state.mapTourists[i] ?? '',
+                            ),
+                          );
+                        },
+                      ),
+
                       paddingDivided,
 
                       PriceInfoWidget(booking: state.booking),
@@ -56,6 +80,9 @@ class BookingPage extends StatelessWidget {
 
                       CardWidget(
                         widget: ListTile(
+                            onTap: () {
+                              context.read<BookingCubit>().addTourist();
+                            },
                             title: Text(
                               'Добавить туриста',
                               style: theme.textTheme.titleLarge,
@@ -77,8 +104,7 @@ class BookingPage extends StatelessWidget {
                       paddingDivided,
 
                       BottomWidget(
-                          content:
-                              'Оплатить ${state.booking.totalPrice()}',
+                          content: 'Оплатить ${state.booking.totalPrice()}',
                           callBack: () {
                             Navigator.push(
                                 context,

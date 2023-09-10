@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../core/core.dart';
 import '../data/models/booking.dart';
 import '../data/models/booking_api.dart';
+import '../data/models/tourist.dart';
 
 part 'booking_state.dart';
 part 'booking_cubit.freezed.dart';
@@ -28,5 +29,11 @@ class BookingCubit extends Cubit<BookingState> {
     }catch(e){
       emit(state.copyWith(status: Status.failure));
     }
+  }
+
+  void addTourist(){
+    emit(state.copyWith(
+      tourists: [...state.tourists, Tourist.defTourist]
+    ));
   }
 }

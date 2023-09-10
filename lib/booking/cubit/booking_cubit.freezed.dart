@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BookingState {
   Status get status => throw _privateConstructorUsedError;
   Booking get booking => throw _privateConstructorUsedError;
+  Map<int, String> get mapTourists => throw _privateConstructorUsedError;
+  List<Tourist> get tourists => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BookingStateCopyWith<BookingState> get copyWith =>
@@ -30,7 +32,11 @@ abstract class $BookingStateCopyWith<$Res> {
           BookingState value, $Res Function(BookingState) then) =
       _$BookingStateCopyWithImpl<$Res, BookingState>;
   @useResult
-  $Res call({Status status, Booking booking});
+  $Res call(
+      {Status status,
+      Booking booking,
+      Map<int, String> mapTourists,
+      List<Tourist> tourists});
 
   $BookingCopyWith<$Res> get booking;
 }
@@ -50,6 +56,8 @@ class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
   $Res call({
     Object? status = null,
     Object? booking = null,
+    Object? mapTourists = null,
+    Object? tourists = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -60,6 +68,14 @@ class _$BookingStateCopyWithImpl<$Res, $Val extends BookingState>
           ? _value.booking
           : booking // ignore: cast_nullable_to_non_nullable
               as Booking,
+      mapTourists: null == mapTourists
+          ? _value.mapTourists
+          : mapTourists // ignore: cast_nullable_to_non_nullable
+              as Map<int, String>,
+      tourists: null == tourists
+          ? _value.tourists
+          : tourists // ignore: cast_nullable_to_non_nullable
+              as List<Tourist>,
     ) as $Val);
   }
 
@@ -80,7 +96,11 @@ abstract class _$$_BookingStateCopyWith<$Res>
       __$$_BookingStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, Booking booking});
+  $Res call(
+      {Status status,
+      Booking booking,
+      Map<int, String> mapTourists,
+      List<Tourist> tourists});
 
   @override
   $BookingCopyWith<$Res> get booking;
@@ -99,6 +119,8 @@ class __$$_BookingStateCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? booking = null,
+    Object? mapTourists = null,
+    Object? tourists = null,
   }) {
     return _then(_$_BookingState(
       status: null == status
@@ -109,6 +131,14 @@ class __$$_BookingStateCopyWithImpl<$Res>
           ? _value.booking
           : booking // ignore: cast_nullable_to_non_nullable
               as Booking,
+      mapTourists: null == mapTourists
+          ? _value._mapTourists
+          : mapTourists // ignore: cast_nullable_to_non_nullable
+              as Map<int, String>,
+      tourists: null == tourists
+          ? _value._tourists
+          : tourists // ignore: cast_nullable_to_non_nullable
+              as List<Tourist>,
     ));
   }
 }
@@ -117,7 +147,12 @@ class __$$_BookingStateCopyWithImpl<$Res>
 
 class _$_BookingState implements _BookingState {
   const _$_BookingState(
-      {this.status = Status.unKnown, this.booking = BookingState.defBooking});
+      {this.status = Status.unKnown,
+      this.booking = BookingState.defBooking,
+      final Map<int, String> mapTourists = BookingState._mapTourists,
+      final List<Tourist> tourists = const []})
+      : _mapTourists = mapTourists,
+        _tourists = tourists;
 
   @override
   @JsonKey()
@@ -125,10 +160,27 @@ class _$_BookingState implements _BookingState {
   @override
   @JsonKey()
   final Booking booking;
+  final Map<int, String> _mapTourists;
+  @override
+  @JsonKey()
+  Map<int, String> get mapTourists {
+    if (_mapTourists is EqualUnmodifiableMapView) return _mapTourists;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_mapTourists);
+  }
+
+  final List<Tourist> _tourists;
+  @override
+  @JsonKey()
+  List<Tourist> get tourists {
+    if (_tourists is EqualUnmodifiableListView) return _tourists;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tourists);
+  }
 
   @override
   String toString() {
-    return 'BookingState(status: $status, booking: $booking)';
+    return 'BookingState(status: $status, booking: $booking, mapTourists: $mapTourists, tourists: $tourists)';
   }
 
   @override
@@ -137,11 +189,19 @@ class _$_BookingState implements _BookingState {
         (other.runtimeType == runtimeType &&
             other is _$_BookingState &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.booking, booking) || other.booking == booking));
+            (identical(other.booking, booking) || other.booking == booking) &&
+            const DeepCollectionEquality()
+                .equals(other._mapTourists, _mapTourists) &&
+            const DeepCollectionEquality().equals(other._tourists, _tourists));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, booking);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      booking,
+      const DeepCollectionEquality().hash(_mapTourists),
+      const DeepCollectionEquality().hash(_tourists));
 
   @JsonKey(ignore: true)
   @override
@@ -151,13 +211,20 @@ class _$_BookingState implements _BookingState {
 }
 
 abstract class _BookingState implements BookingState {
-  const factory _BookingState({final Status status, final Booking booking}) =
-      _$_BookingState;
+  const factory _BookingState(
+      {final Status status,
+      final Booking booking,
+      final Map<int, String> mapTourists,
+      final List<Tourist> tourists}) = _$_BookingState;
 
   @override
   Status get status;
   @override
   Booking get booking;
+  @override
+  Map<int, String> get mapTourists;
+  @override
+  List<Tourist> get tourists;
   @override
   @JsonKey(ignore: true)
   _$$_BookingStateCopyWith<_$_BookingState> get copyWith =>
